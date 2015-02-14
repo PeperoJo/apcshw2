@@ -62,7 +62,7 @@ public class nqueens {
        	for(int r=0; r<side;r++){
 	    for(int s=0; s<side;s++){
 		if((spX-r) == (spY-s)){board[r][s]=taken;}
-		if((spY-s) == (s-spY)){board[r][s]=taken;}
+		if((spX-r) == (s-spY)){board[r][s]=taken;}
 		board[spX][spY]=queen;}
 	    }
     }
