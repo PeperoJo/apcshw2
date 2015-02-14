@@ -7,7 +7,7 @@ public class nqueens {
     private char[][] board;
     private int side, maxX, maxY;
     private char taken = '.';
-    private char space = 'o';
+    private char space = 'x';
     private char queen = 'Q';
 
     public void delay(int n){
@@ -17,8 +17,8 @@ public class nqueens {
     }
     //--------------------------------
 
-    public nqueens() {
-	side = 5;
+    public nqueens(int a) {
+	side = a;
 	maxX = side;
 	maxY = side;
 	board = new char[maxX][maxY];
@@ -34,13 +34,20 @@ public class nqueens {
 
     public String toString(){
 	String s = "[2J\n";
-				
-	for (int y=0;y<maxY;y++)
-	    {
-		for (int x=0;x<maxX;x++)
-		    s = s +board[x][y] + " ";
-		s=s+"\n";
+	s+="+";
+	for (int y=0;y<2*maxY+1;y++){
+	    s += "-";}
+	s+="+ \n";
+	for (int y=0;y<maxY;y++){
+	    s+="| ";
+	    for (int x=0;x<maxX;x++)
+		s = s +board[x][y] + " ";
+	    s=s+"| \n";
 	    }
+	s+="+";
+        for (int y=0;y<2*maxY+1;y++){
+            s += "-";}
+        s+="+ \n";
 	return s;
     }
 
@@ -61,18 +68,13 @@ public class nqueens {
 	    if (board[a][spY] != queen){
 		board[a][spY] = taken;}
 	}
-	/*	for(int r=-1*side; r<side;r++){
-	    for(int s=-1*side; s<side;s++){
-		
-		while (((spX+r)>=0) && 
-		       ((spX+r)<=side) &&
-		       ((spY+s)>=0) &&
-		       ((spY+s)<=side)){
-		    if (board[spX+r][spY+s] != queen){
-			board[spX+r][spY+s] = taken;}
+       	for(int r=0; r<side;r++){
+	    for(int s=0; s<side;s++){
+		if((spX-r) == (spY-s)){board[r][s]=taken;}
+		if((spY-s) == (s-spY)){board[r][s]=taken;}
+		board[spX][spY]=queen;
 		}
 	    }
-	    }*/
     }
 
 
@@ -84,17 +86,18 @@ public class nqueens {
         int spotY = r.nextInt(side);
 	if (board[spotX][spotY] == space){
 	    board[spotX][spotY] = queen;
-	    //FINDS IMPOSSIBLE PLACES -
+	//FINDS IMPOSSIBLE PLACES -----
 	    taker(spotX,spotY);	
-	    System.out.println(this);
-	    delay(250);
+	    //    System.out.println(this);
+	    // delay(250);
 	}
 	if (checker() == true){solve();}
     }
 
     public static void main(String[] args){
-	nqueens q = new nqueens();
+	nqueens q = new nqueens(15);
 	System.out.println(q);
 	q.solve();
+	System.out.println(q);
     }
 }
