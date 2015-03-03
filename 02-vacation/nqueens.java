@@ -76,7 +76,7 @@ public class nqueens {
 	//FINDS IMPOSSIBLE PLACES -----
 	    taker(spotX,spotY);	
 	    System.out.println(this);
-	    delay(100);
+	    delay(5);
 	}
 	if (checker() == true){solve();}
     }
