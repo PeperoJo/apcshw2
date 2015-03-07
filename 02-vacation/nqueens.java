@@ -79,7 +79,7 @@ public class nqueens {
 	//FINDS IMPOSSIBLE PLACES -----
 	    taker(spotX,spotY);	
 	    System.out.println(this);
-	    delay(100);
+	    delay(5);
 	}
 	if (checker() == true){solve();}
 	//Checks if there are any spots left, if so it runs solve again
