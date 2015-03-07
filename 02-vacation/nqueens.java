@@ -8,7 +8,6 @@ public class nqueens {
     private char taken = '.';
     private char space = 'x';
     private char queen = 'Q';
-
     public void delay(int n){
 	try {
 	    Thread.sleep(n);
@@ -24,6 +23,7 @@ public class nqueens {
     }
 
     public void filler() {
+	//FILLS THE EMPTY BOARD WITH VISUAL CHARACTERS
 	for(int a=0;a<maxX;a++){
 	    for(int b=0;b<maxY;b++)
 		board[a][b] = space;
@@ -32,16 +32,16 @@ public class nqueens {
 
     public String toString(){
 	String s = "[2J\n";
-	s+="+";
-	for (int y=0;y<2*maxY+1;y++){s += "-";}
-	s+="+ \n";
+	s+="+"; //TOP LEFT CORNER
+	for (int y=0;y<2*maxY+1;y++){s += "-";} //TOP BORDER
+	s+="+ \n"; //TOP RIGHT CORNER
 	for (int y=0;y<maxY;y++){
-	    s+="| ";
-	    for (int x=0;x<maxX;x++){s = s +board[x][y] + " ";}
-	    s=s+"| \n";}
-	s+="+";
-        for (int y=0;y<2*maxY+1;y++){s += "-";}
-        s+="+ \n";
+	    s+="| "; //LEFT BORDER
+	    for (int x=0;x<maxX;x++){s = s +board[x][y] + " ";} //INFOS
+	    s=s+"| \n";} //RIGHT BORDER
+	s+="+"; //BOTTOM LEFT CORNER
+        for (int y=0;y<2*maxY+1;y++){s += "-";} //BOTTOM BORDER
+        s+="+ \n"; //BOTTOM RIGHT CORNER
 	return s;
     }
 
@@ -52,13 +52,16 @@ public class nqueens {
 	    }
 	}
 	return false;
+	//ANY EMPTY SPACES?
     }
 
     public void taker(int spX, int spY){
+	//REMOVES VERTICAL & HORIZONTAL
 	for(int a=0; a<side;a++){
 	    if (board[spX][a] != queen){board[spX][a] = taken; }
 	    if (board[a][spY] != queen){board[a][spY] = taken;}
 	}
+	//REMOVES DIAGONALS
        	for(int r=0; r<side;r++){
 	    for(int s=0; s<side;s++){
 		if((spX-r) == (spY-s)){board[r][s]=taken;}
@@ -79,6 +82,7 @@ public class nqueens {
 	    delay(100);
 	}
 	if (checker() == true){solve();}
+	//Checks if there are any spots left, if so it runs solve again
     }
 
     public static void main(String[] args){
